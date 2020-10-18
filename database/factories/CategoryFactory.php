@@ -4,7 +4,8 @@ namespace Database\Factories;
 
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use Faker\Generator as Faker;
+use Illuminate\Support\Str;
 class CategoryFactory extends Factory
 {
     /**
@@ -23,6 +24,8 @@ class CategoryFactory extends Factory
     {
         return [
             //
+            'name' => $this->faker->name,
+            'slug' => Str::slug($this->faker->slug)
         ];
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Reply extends Model
 {
     use HasFactory;
-//Every reply is under question
+//Every reply is under question, this is for relations
     public function question()
     {
         return $this->belongsTo(Question::class);
@@ -24,4 +24,11 @@ class Reply extends Model
         //Every reply has many likes
         return $this->hasMany(Like::class);
     }
+
+    
+    protected $fillable = [
+        'body',
+        'question_od',
+        'user_id',
+    ];
 }
