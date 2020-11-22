@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reply;
+use App\Models\Question;
 use Illuminate\Http\Request;
 
 class ReplyController extends Controller
@@ -14,6 +16,9 @@ class ReplyController extends Controller
     public function index()
     {
         //
+        //return Reply::latest()->get();
+        //Isso ai abaixo foi buscar no model, a relacao hasMany
+        return $question->replies;
     }
 
     /**
@@ -25,6 +30,8 @@ class ReplyController extends Controller
     public function store(Request $request)
     {
         //
+        Reply::create($request->all());
+        return response()->json("Reply Saved", 200);
     }
 
     /**
@@ -33,9 +40,10 @@ class ReplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Question $question, Reply $reply)
     {
         //
+        return $reply;
     }
 
     /**
@@ -45,9 +53,11 @@ class ReplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Reply $reply)
     {
         //
+        $reply->update($request->all());
+        return request()->json('Updated', 200);
     }
 
     /**
@@ -56,8 +66,10 @@ class ReplyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Reply $reply)
     {
         //
+        $reply->delete();
+        return response()->json("Deleted",204);
     }
 }

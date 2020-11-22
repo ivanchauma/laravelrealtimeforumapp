@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\LikeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::apiResource('/question', App\Http\Controllers\QuestionController::class);
+Route::apiResource('/category', App\Http\Controllers\CategoryController::class);
+//Route::apiResource('/like', App\Http\Controllers\LikeController::class);
+Route::apiResource('/question/{question}/reply', App\Http\Controllers\QuestionController::class);
+//Route::get('/question_id/{id}', [App\Http\Controllers\QuestionController::class, 'index']);
+Route::post('/like/{reply}',[LikeController::class, 'likeit']);
+Route::delete('/like/{reply}',[LikeController::class, 'unLikeIt']);

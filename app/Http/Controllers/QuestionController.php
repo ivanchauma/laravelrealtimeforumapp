@@ -12,9 +12,11 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Question $question)
     {
-        //
+        //Isso ai abaixo foi buscar no model, a relacao hasMany
+        //return $question->replies;
+        return Question::latest()->get();
     }
 
     /**
@@ -36,6 +38,18 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         //
+       /* $question = new Question;
+        $question->title = $request->title;
+        $question->slug = $request->slug;
+        $question->user_id = $request->user_id;
+        $question->body = $request->body;
+        $question->category_id = $request->category_id;
+        $question->save(); */
+
+        Question::create($request->all());
+        //You have user_id in here,must be authenticated, this way use
+        //auth()->user()->question()->create($request->all());
+        return response()->json("Saved ok", 200);
     }
 
     /**
@@ -47,6 +61,7 @@ class QuestionController extends Controller
     public function show(Question $question)
     {
         //
+       return $question;
     }
 
     /**
@@ -70,6 +85,8 @@ class QuestionController extends Controller
     public function update(Request $request, Question $question)
     {
         //
+        $question->update($request->all());
+        return request()->json('Updated', 200);
     }
 
     /**
@@ -81,5 +98,7 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
         //
+        $question->delete();
+        return response()->json("Deleted", 204);
     }
 }
