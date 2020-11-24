@@ -27,7 +27,7 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
-    /*public function report(Exception $exception) {
+    /*git public function report(Exception $exception) {
 
         parent::report($exception);
     }*/
