@@ -31,8 +31,10 @@ Route::group([
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
     Route::post('me', [AuthController::class, 'me']);
+    Route::post('signup', [AuthController::class, 'signup']);
 
 });
+
 
 Route::apiResource('/question', App\Http\Controllers\QuestionController::class);
 Route::apiResource('/category', App\Http\Controllers\CategoryController::class);

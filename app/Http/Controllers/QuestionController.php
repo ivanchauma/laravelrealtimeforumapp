@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Models\Question;
 use Illuminate\Http\Request;
 
@@ -12,6 +13,10 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('JWT', ['except' => ['index', 'show']]);
+    }
     public function index(Question $question)
     {
         //Isso ai abaixo foi buscar no model, a relacao hasMany
