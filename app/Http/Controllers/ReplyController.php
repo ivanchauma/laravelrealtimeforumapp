@@ -10,10 +10,10 @@ class ReplyController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     *comp
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Question $question)
     {
         //
         //return Reply::latest()->get();
