@@ -23,12 +23,15 @@
       <v-btn icon>
         <v-icon>mdi-bookmark</v-icon>
       </v-btn>
-
-           <v-btn icon>
+        <router-link to="/login">
+        <v-btn icon>
         <v-icon>mdi-login</v-icon>
       </v-btn>
+               </router-link>
     </v-toolbar>
+      <router-view></router-view>
   </v-card>
+
 </template>
 
 <script>
