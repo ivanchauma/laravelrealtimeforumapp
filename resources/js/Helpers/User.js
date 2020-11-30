@@ -7,7 +7,8 @@ class User {
                 .then(res => {
                     //Token.payload(res.data.access_token)
                     this.responseAfterLogin(res);
-                    console.log(res.data);
+                    this.$router.push({name:'forum'});
+                    //console.log(res.data);
                 })
                 .catch(err => console.log(err.reponse.data))
                 }
@@ -18,6 +19,7 @@ class User {
         if (Token.isValid(access_token)){
             //console.log(Token.isValid(access_token));
             AppStorage.store(username, access_token);
+            window.location =  '/forum';
         }
     }
 
@@ -32,10 +34,12 @@ class User {
 
     loggedIn(){
         return this.hasToken();
+       // window.location =  '/forum';
     }
 
     logout(){
         AppStorage.clear();
+        window.location =  '/login';
     }
 
     name(){

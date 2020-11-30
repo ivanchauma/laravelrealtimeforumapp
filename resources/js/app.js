@@ -11,6 +11,8 @@ window.User = User
 //console.log(User.loggedIn());
 //console.log(User.id())
 
+window.EventBus = new Vue();
+
 Vue.component('AppHome', require('./components/AppHome.vue').default);
 import router from './Router/router.js'
 

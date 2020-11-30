@@ -2,13 +2,19 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 //importing Components for router
-import AppLogin from '../components/AppLogin.vue';
+import AppLogin from '../components/AppLogin';
+import AppLogout from '../components/AppLogout';
+import AppSignUp from '../components/AppSignUp';
+import AppForum from '../components/AppForum';
 
 Vue.use(VueRouter)
 
 
 const routes = [
     { path: '/login', component: AppLogin },
+    { path: '/logout', component: AppLogout},
+    { path: '/signup', component: AppSignUp},
+    { path: '/forum', component: AppForum, name:'forum'}
     //{ path: '/bar', component: Bar }
   ]
 

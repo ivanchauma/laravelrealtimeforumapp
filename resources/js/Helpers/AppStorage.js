@@ -6,26 +6,27 @@ class AppStorage {
 
     storeUser(user){
         localStorage.setItem('user', user);
+        //console.log("Stored the token : " + token);
     }
 
 
     store(user, token) {
         this.storeToken(token);
         this.storeUser(user);
-        //console.log("stored");
     }
 
     clear(){
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+        console.log("All Cleared");
     }
 
     getToken(){
-      return  localStorage.getItem('token');
+      return localStorage.getItem('token');
     }
 
     getUser(){
-        return localStorage.getItem('user');
+      return localStorage.getItem('user');
     }
 }
 

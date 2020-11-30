@@ -12,22 +12,16 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn icon>
-        <v-icon>mdi-forum</v-icon>
-      </v-btn>
+    <router-link
+        v-for="item in items"
+        :key="item.title"
+        :to="item.to">
+      <v-btn icon
+      v-if="item.show">
+        <v-icon>{{item.icon}}</v-icon>
 
-      <v-btn icon>
-        <v-icon>mdi-information</v-icon>
       </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-bookmark</v-icon>
-      </v-btn>
-        <router-link to="/login">
-        <v-btn icon>
-        <v-icon>mdi-login</v-icon>
-      </v-btn>
-               </router-link>
+      </router-link>
     </v-toolbar>
       <router-view></router-view>
   </v-card>
@@ -36,7 +30,22 @@
 
 <script>
 export default {
-
+        data(){
+            return {
+                items: [
+                    {'title' : 'Forum',icon: 'mdi-forum', to:'/forum', show:true},
+                    {'title' : 'Ask Question',icon: 'mdi-information', to:'/forum', show:User.loggedIn()},
+                    {'title' : 'Category',icon: 'mdi-bookmark', to:'/forum', show:User.loggedIn()},
+                    {'title' : 'Login',icon: 'mdi-login', to:'/login', show:!User.loggedIn()},
+                    {'title' : 'Logout', icon: 'mdi-login',to:'/logout', show:User.loggedIn()},
+                ]
+            }
+        },
+        created(){
+            EventBus.$on('logout', () => {
+                User.logout();
+            })
+        }
 }
 </script>
 
