@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use App\Http\Resources\QuestionResource;
+use Illuminate\Support\Str;
+
 
 class QuestionController extends Controller
 {
@@ -21,7 +24,8 @@ class QuestionController extends Controller
     {
         //Isso ai abaixo foi buscar no model, a relacao hasMany
         //return $question->replies;
-        return Question::latest()->get();
+        //return Question::latest()->get();
+        return QuestionResource::collection(Question::latest()->get());
     }
 
     /**
@@ -51,10 +55,13 @@ class QuestionController extends Controller
         $question->category_id = $request->category_id;
         $question->save(); */
 
-        Question::create($request->all());
+        //For user id we have a relationship to get user_id
+        //$request['slug'] = Str::slug($request->title); => Good option for override createAll, didn't know about it
+       // Question::create($request->all());
         //You have user_id in here,must be authenticated, this way use
-        //auth()->user()->question()->create($request->all());
-        return response()->json("Saved ok", 200);
+        $question = auth()->user()->question()->create($request->all());
+        return response(new QuestionResource($question), 200);
+        //return response()->json("Saved ok", 200);
     }
 
     /**
@@ -66,7 +73,7 @@ class QuestionController extends Controller
     public function show(Question $question)
     {
         //
-       return $question;
+       return new QuestionResource($question);
     }
 
     /**
