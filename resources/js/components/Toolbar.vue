@@ -19,7 +19,6 @@
       <v-btn icon
       v-if="item.show">
         <v-icon>{{item.icon}}</v-icon>
-
       </v-btn>
       </router-link>
     </v-toolbar>
@@ -35,7 +34,7 @@ export default {
                 items: [
                     {'title' : 'Forum',icon: 'mdi-forum', to:'/forum', show:true},
                     {'title' : 'Ask Question',icon: 'mdi-information', to:'/ask', show:User.loggedIn()},
-                    {'title' : 'Category',icon: 'mdi-bookmark', to:'/forum', show:User.loggedIn()},
+                    {'title' : 'Category',icon: 'mdi-bookmark', to:'/category', show:User.loggedIn()},
                     {'title' : 'Login',icon: 'mdi-login', to:'/login', show:!User.loggedIn()},
                     {'title' : 'Logout', icon: 'mdi-login',to:'/logout', show:User.loggedIn()},
                 ]

@@ -15,6 +15,14 @@
         </v-card-title>
 
         <v-card-text v-html="body"></v-card-text>
+        <v-card-actions v-if="own">
+            <v-btn icon small @click="edit">
+                <v-icon color="orange">mdi-pencil</v-icon>
+            </v-btn>
+                 <v-btn icon small @click="destroy">
+                <v-icon color="red">mdi-delete</v-icon>
+            </v-btn>
+        </v-card-actions>
         </v-container>
     </v-card>
 </template>
@@ -22,9 +30,24 @@
 <script>
 export default {
     props:['data'],
+    data(){
+        return {
+            own: User.own(this.data.user_id)
+        }
+    },
     computed: {
         body(){
            return md.parse(this.data.body)
+        }
+    },
+    methods:{
+        destroy(){
+            axios.delete(`/api/question/${this.data.slug}`)
+            .then(res => this.$router.push('/forum'))
+            .catch(error => console.log("Something went wrong"))
+        },
+        edit(){
+            EventBus.$emit('startEditing')
         }
     }
 }

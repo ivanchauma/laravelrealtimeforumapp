@@ -52,7 +52,20 @@ class User {
         if (this.loggedIn()){
             const payload = Token.payload(AppStorage.getToken())
             return payload.sub
+        }else{
+            return false
         }
+    }
+
+    own(id){
+        //console.log(this.id() == id);
+        //console.log(id);
+       // console.log(this.id);
+        return this.id() == id
+    }
+
+    admin(){
+        return this.id() == 50
     }
 }
 

@@ -14,4 +14,10 @@ class Category extends Model
         'name',
         'slug',
     ];
+
+      //This is for specifying the api/question/1 id e muda para o slug
+      public function getRouteKeyName()
+      {
+          return 'slug';
+      }
 }

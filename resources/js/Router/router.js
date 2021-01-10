@@ -8,6 +8,7 @@ import AppSignUp from '../components/AppSignUp';
 import AppForum from '../components/AppForum';
 import Read from '../components/forum/read';
 import Create from '../components/forum/create';
+import CreateCategory from '../components/forum/Category/CreateCategory';
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,7 @@ const routes = [
     { path: '/forum', component: AppForum, name:'forum'},
     { path: '/question/:slug', component: Read, name:'read'},
     { path: '/ask', component: Create, name:'ask'},
+    { path: '/category', component: CreateCategory},
     //{ path: '/bar', component: Bar }
   ]
 

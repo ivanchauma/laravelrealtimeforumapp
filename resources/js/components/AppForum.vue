@@ -10,12 +10,16 @@
             <!--This is a child componet, so in component question you create a props -->
             </question>
           </v-flex>
-          Sidebar
+          <v-flex xs4>
+              <app-side-bar>
+              </app-side-bar>
+          </v-flex>
       </v-layout>
   </v-container>
 </template>
 
 <script>
+import AppSideBar from './forum/AppSideBar.vue'
 import question from './forum/question'
 export default {
     data(){
@@ -23,7 +27,7 @@ export default {
             questions:{}
         }
     },
-    components: {question},
+    components: {question, AppSideBar},
     created() {
         axios.get('/api/question')
         .then(res => this.questions = res.data.data)
