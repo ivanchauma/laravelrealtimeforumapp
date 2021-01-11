@@ -8,7 +8,7 @@ class User {
                     //Token.payload(res.data.access_token)
                     this.responseAfterLogin(res);
                     this.$router.push({name:'forum'});
-                    //console.log(res.data);
+                    console.log(res.data);
                 })
                 .catch(err => console.log(err.reponse.data))
                 }

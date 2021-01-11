@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ReplyResource;
 use App\Models\Reply;
 use App\Models\Question;
 use Illuminate\Http\Request;
@@ -18,7 +19,7 @@ class ReplyController extends Controller
         //
         //return Reply::latest()->get();
         //Isso ai abaixo foi buscar no model, a relacao hasMany
-        return $question->replies;
+        return new ReplyResource($question->replies);
     }
 
     /**
@@ -27,11 +28,13 @@ class ReplyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Question $question, Request $request)
     {
         //
-        Reply::create($request->all());
-        return response()->json("Reply Saved", 200);
+       // Reply::create($request->all());
+        //return response()->json("Reply Saved", 200);
+       $reply = $question->replies()->create($request->all());
+       return response(['reply' => new ReplyResource($reply)], 200);
     }
 
     /**
@@ -43,7 +46,7 @@ class ReplyController extends Controller
     public function show(Question $question, Reply $reply)
     {
         //
-        return $reply;
+        return new ReplyResource($reply);
     }
 
     /**

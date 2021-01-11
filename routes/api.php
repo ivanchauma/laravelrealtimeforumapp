@@ -39,7 +39,8 @@ Route::group([
 Route::apiResource('/question', App\Http\Controllers\QuestionController::class);
 Route::apiResource('/category', App\Http\Controllers\CategoryController::class);
 //Route::apiResource('/like', App\Http\Controllers\LikeController::class);
-Route::apiResource('/question/{question}/reply', App\Http\Controllers\QuestionController::class);
+Route::apiResource('/question/{question}/reply', App\Http\Controllers\ReplyController::class);
+//Route::apiResource('/question/{question}/reply', App\Http\Controllers\QuestionController::class);
 //Route::get('/question_id/{id}', [App\Http\Controllers\QuestionController::class, 'index']);
 Route::post('/like/{reply}',[LikeController::class, 'likeit']);
 Route::delete('/like/{reply}',[LikeController::class, 'unLikeIt']);

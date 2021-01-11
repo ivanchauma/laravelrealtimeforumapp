@@ -18,12 +18,16 @@ class Question extends Model
         'user_id'
     ];
 
+   protected $with = ['replies']; //what relationship we want to load, chech question resource for this->replies, automatically puts join on it and put and object
+
     protected static function boot(){
         parent::boot();
         static::creating(function($question){
             $question->slug = Str::slug($question->title);
         });
     }
+
+
 
     //Or you can use $protected guarded = [];
     public function user()
@@ -33,7 +37,7 @@ class Question extends Model
 
 
     public function replies(){
-        return $this->hasMany(Reply::class);
+        return $this->hasMany(Reply::class)->latest();
     }
 
     public function category(){

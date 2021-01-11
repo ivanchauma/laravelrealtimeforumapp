@@ -8,17 +8,27 @@
         :data = question
         >
         </show-question>
+
+    <v-container>
+        <replies :question="question">
+        </replies>
+
+        <new-reply :QuestionSlug="question.slug">
+        </new-reply>
+    </v-container>
 </div>
 
 </template>
 
 <script>
 import EditQuestion from './EditQuestion.vue'
+import NewReply from './reply/newReply.vue'
+import Replies from './reply/replies'
 import ShowQuestion from "./ShowQuestion.vue"
 
 export default
 {
-  components: { ShowQuestion, EditQuestion },
+  components: { ShowQuestion, EditQuestion, Replies, NewReply },
     data(){
         return {
             question:null,
